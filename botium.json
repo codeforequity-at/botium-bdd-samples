@@ -18,8 +18,7 @@
       "NODE_TLS_REJECT_UNAUTHORIZED": 0,
       "NODE_ENV": "dev",
       "page_token": "sample",
-      "verify_token": "sample",
-	  "IS_BOTIUM_CONTAINER": "true"
+      "verify_token": "sample"
     }
   }
 }
