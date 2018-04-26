@@ -1,0 +1,23 @@
+{
+  "name": "botium-bdd-samples",
+  "version": "1.0.0",
+  "description": "Botium BDD Samples",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeforequity-at/botium-bdd-samples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeforequity-at/botium-bdd-samples/issues"
+  },
+  "homepage": "https://github.com/codeforequity-at/botium-bdd-samples#readme",
+  "devDependencies": {
+    "cucumber": "^4.2.1"
+  }
+}
