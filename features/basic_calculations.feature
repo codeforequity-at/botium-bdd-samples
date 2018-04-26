@@ -12,3 +12,9 @@ Feature: Basic calculations
 	And second number is 2
     When I ask to add the numbers
     Then the result should be 3
+
+  Scenario: 7 and 12 should result in 19
+    Given first number is 7
+	And second number is 12
+    When I ask to add the numbers
+    Then the result should be 19

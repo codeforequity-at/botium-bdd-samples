@@ -6,12 +6,16 @@ const BotDriver = require('botium-core').BotDriver;
 
 setDefaultTimeout(60 * 1000);
 
+const Exec = () => global.driverFluent.Exec().then(() => global.driverFluent.tasks = [])
+
 BeforeAll(function () {
-  global.driver = new BotDriver();
-  return global.driver.Build().then((c) => { global.container = c });
+  const driver = new BotDriver();
+  global.driverFluent = driver.BuildFluent()
+  return Exec()
 });
 Before(function () {
-  return global.container.Start();
+  global.driverFluent.Start()
+  return Exec()
 });
 
 Given('first number is {int}', function (int) {
@@ -23,17 +27,14 @@ Given('second number is {int}', function (int) {
 });
 
 When('I ask to add the numbers', function () {
-  return global.container.UserSaysText('start')
-    .then(() => global.container.WaitBotSaysText())
-    .then((text) => assert.equal(text, 'I can do a very advanced scientific calculations for you ("Addition").'))
-    .then(() => global.container.WaitBotSaysText())
-    .then((text) => assert.equal(text, 'Please tell me the first number!'))
-    .then(() => global.container.UserSaysText(`${this.firstNumber}`))
-    .then(() => global.container.WaitBotSaysText())
-    .then((text) => assert.equal(text, 'Please tell me the second number!'))
-    .then(() => global.container.UserSaysText(`${this.secondNumber}`))
-    .then(() => global.container.WaitBotSaysText())
-    .then((text) => this.calculationResult = text);
+  global.driverFluent.UserSaysText('start')
+    .WaitBotSaysText((text) => assert.equal(text, 'I can do a very advanced scientific calculations for you ("Addition").'))
+    .WaitBotSaysText((text) => assert.equal(text, 'Please tell me the first number!'))
+    .UserSaysText(`${this.firstNumber}`)
+    .WaitBotSaysText((text) => assert.equal(text, 'Please tell me the second number!'))
+    .UserSaysText(`${this.secondNumber}`)
+    .WaitBotSaysText((text) => this.calculationResult = text)
+  return Exec()
 });
 
 Then('the result should be {int}', function (int) {
@@ -41,8 +42,10 @@ Then('the result should be {int}', function (int) {
 });
 
 After(function () {
-  return global.container.Stop();
+  global.driverFluent.Stop();
+  return Exec()
 });
 AfterAll(function () {
-  return global.container.Clean();
+  global.driverFluent.Clean();
+  return Exec()
 });
