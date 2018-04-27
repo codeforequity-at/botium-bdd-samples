@@ -10,8 +10,11 @@ _Repository is using the [Calculator Chatbot Sample](https://github.com/codefore
 * Install/Configure [Docker](https://www.docker.com/) - see [Botium Wiki](https://github.com/codeforequity-at/botium-core/wiki) for possible other configurations and use cases
 * Install/Configure [Node.js](https://nodejs.org) (> 6.0)
 * Open command line window to install dependencies and run the feature tests
-    > npm install
-    > npm run test
+
+```
+> npm install
+> npm run test
+```
 
 Output will show passed scenarios:
 ```
